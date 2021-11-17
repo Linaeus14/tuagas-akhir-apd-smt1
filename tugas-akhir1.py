@@ -256,6 +256,11 @@ while loopmain:
                     "\n ==Daftar berhasil== "
                     f"\n no id : {counterakuncostumer}"
                 )
+            else:
+                print(
+                    ""
+                    "\n input salah, coba lagi!"
+                )
 
         elif login == "3":
             logintype = ""
@@ -441,7 +446,8 @@ while loopmain:
 
             else:
                 print(
-                    "input salah, coba lagi!"
+                    ""
+                    "\n input salah, coba lagi!"
                 )
 
     #===================================================================================================================
