@@ -669,7 +669,7 @@ while loopmain:
                             elif lispesancostum["status"][idd-1][editpesan-1] != "Dalam Antrian":
                                 print(
                                     ""
-                                    "\n Hanya bisa mengubah pesanan yang dalam antrian dan belum dalam proses pembuatan/selsai!"
+                                    "\n Hanya bisa mengubah pesanan yang dalam antrian dan belum Dalam Proses Pembuatan / Selsai!"
                                 )
                                 editpesan = ""
                     daftar_menu()
