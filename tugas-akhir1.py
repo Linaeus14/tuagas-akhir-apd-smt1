@@ -778,6 +778,58 @@ while loopmain:
                         "\n ==Daftar Pesanan Kosong=="
                     )
 
+            elif menucostum == "4":
+                daftar_pesanan("costumer")
+                hapes = ""
+                while not(type(hapes) == int):
+                    hapes = input(
+                        ""
+                        "\n Pilih pesanan untuk di hapus : "
+                        "\n (Angka urut saja, misal \"1\")"
+                        "\n > "
+                    )
+                    try:
+                        hapes = int(hapes)
+                    except ValueError:
+                        print(
+                            ""
+                            "\n input bukan angka, coba lagi!"
+                        )
+                    if hapes > len(lispesancostum["pesanan"]) or hapes <= 0:
+                        print(
+                            ""
+                            "\n tidak ada angka urut " + str(hapes) + ", coba lagi!"
+                        )
+                        hapes = ""
+                confirmhap = input(
+                    ""
+                    "\n " + lispesancostum["pesanan"][idd-1][hapes-1] +
+                    "\n  " + str(lispesancostum["hargap"][idd-1][hapes-1]) +
+                    "\n Hapus pesanan di atas ? (y/t) : "
+                    "\n > "
+                )
+                if confirmhap == "y":
+                    indexpara = lispesan["pesanan"][hapes-1]
+                    index = lispesan["pesanan"].index(indexpara)
+
+                    del lispesan["pesanan"][index]
+                    del lispesan["hargap"][index]
+
+                    del lispesancostum["pesanan"][idd-1][hapes-1]
+                    del lispesancostum["hargap"][idd-1][hapes-1]
+
+                    print(
+                        ""
+                        "\n Pesanan telah di hapus"
+                    )
+                elif confirmhap == "t":
+                    "back"
+                else:
+                    print(
+                        ""
+                        "\n input salah, coba lagi!"
+                    )
+
             elif menucostum == "0":
                 loop1 = False
 
