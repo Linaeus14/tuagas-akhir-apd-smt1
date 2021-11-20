@@ -403,6 +403,7 @@ while loopmain:
                     "\n Nama menu yang ingin di tambahkan : "
                     "\n > "
                 )
+                newmenuh = ""
                 while not(type(newmenuh) == int):
                     newmenuh = input(
                         ""
