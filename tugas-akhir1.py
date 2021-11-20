@@ -154,113 +154,128 @@ while loopmain:
 
         #tipe pengguna costumer
         elif login == "2":
-            logincostume = input(
-                ""
-                "\n Masuk sebagai costumer"
-                "\n Pilih : "
-                "\n 1. Login"
-                "\n 2. Buat Akun"
-                "\n > "
-            )
-
-            if logincostume == "1":
-                print(
-                ""
-                "\n Costumer Login"
-                )
-                username = input(
+            loop2 = True
+            while loop2:
+                logincostume = input(
                     ""
-                    "\n Username : "
-                )
-                password = input(
-                    " Password : "
+                    "\n Masuk sebagai costumer"
+                    "\n Pilih : "
+                    "\n 1. Login"
+                    "\n 2. Buat Akun"
+                    "\n 0. Kembali"
+                    "\n "
+                    "\n > "
                 )
 
-                #cek username dan password
-                if username in liscostum[0] and password in liscostum[1]:
-                    idd = liscostum[0].index(username) + 1
+                if logincostume == "1":
                     print(
-                        ""
-                        f"\n Telah masuk sebagai costumer dengan no id {idd}"
+                    ""
+                    "\n Costumer Login"
                     )
-                    logintype = "costumer"
-                    loop1 = False
-                else:
-                    print(
-                        ""
-                        "\n username atau password salah!"
-                        "\n"
-                    )
-            
-            if logincostume == "2":
-                print(
-                ""
-                "\n Daftar sebagai Costumer"
-                )
-                nam = ""
-                while nam == "":
-                    nam = input(
-                        ""
-                        "\n Nama : "
-                    )
-                    if nam == "":
-                        print(
-                            ""
-                            "\n Tidak boleh kosong, coba lagi!"
-                        )
-                nom = ""
-                while nom == "":
-                    nom = input(
-                        " No Hp : +62 "
-                    )
-                    if nom == "":
-                        print(
-                            ""
-                            "\n Tidak boleh kosong, coba lagi!"
-                        )
-                username = ""
-                while username == "" or username in liscostum[0]:
                     username = input(
-                        " Username : "
+                        ""
+                        "\n Username : "
                     )
-                    if username == "":
-                        print(
-                            ""
-                            "\n Tidak boleh kosong, coba lagi!"
-                        )
-                    elif username in liscostum[0]:
-                        print(
-                            ""
-                            "\n username sudah ada"
-                        )
-                password = ""
-                while password == "":
                     password = input(
                         " Password : "
                     )
-                    if password == "":
+
+                    #cek username dan password
+                    if username in liscostum[0] and password in liscostum[1]:
+                        idd = liscostum[0].index(username) + 1
                         print(
                             ""
-                            "\n Tidak boleh kosong, coba lagi!"
+                            f"\n Telah masuk sebagai costumer dengan no id {idd}"
                         )
-                lisidentitas["nama"].append(nam)
-                lisidentitas["no"].append(nom)
-                liscostum[0].append(username)
-                liscostum[1].append(password)
-                lispesancostum["pesanan"].append([])
-                lispesancostum["hargap"].append([])
-                lispesancostum["status"].append([])
-                counterakuncostumer += 1
-                print(
+                        logintype = "costumer"
+                        loop1 = False
+                        loop2 = False
+                    else:
+                        print(
+                            ""
+                            "\n username atau password salah!"
+                            "\n"
+                        )
+                
+                elif logincostume == "2":
+                    print(
                     ""
-                    "\n ==Daftar berhasil== "
-                    f"\n no id : {counterakuncostumer}"
-                )
-            else:
-                print(
-                    ""
-                    "\n input salah, coba lagi!"
-                )
+                    "\n Daftar sebagai Costumer"
+                    )
+                    nam = ""
+                    while nam == "":
+                        nam = input(
+                            ""
+                            "\n Nama : "
+                        )
+                        if nam == "":
+                            print(
+                                ""
+                                "\n Tidak boleh kosong, coba lagi!"
+                            )
+                    nom = ""
+                    while nom == "" or not (type(nom) == int):
+                        nom = input(
+                            " No Hp : +62 "
+                        )
+                        if nom == "":
+                            print(
+                                ""
+                                "\n Tidak boleh kosong, coba lagi!"
+                            )
+                        else:
+                            try:
+                                nom = int(nom)
+                            except ValueError:
+                                print(
+                                    ""
+                                    "\n input bukan angka, coba lagi!"
+                                )
+                    username = ""
+                    while username == "" or username in liscostum[0]:
+                        username = input(
+                            " Username : "
+                        )
+                        if username == "":
+                            print(
+                                ""
+                                "\n Tidak boleh kosong, coba lagi!"
+                            )
+                        elif username in liscostum[0]:
+                            print(
+                                ""
+                                "\n username sudah ada"
+                            )
+                    password = ""
+                    while password == "":
+                        password = input(
+                            " Password : "
+                        )
+                        if password == "":
+                            print(
+                                ""
+                                "\n Tidak boleh kosong, coba lagi!"
+                            )
+                    lisidentitas["nama"].append(nam)
+                    lisidentitas["no"].append(nom)
+                    liscostum[0].append(username)
+                    liscostum[1].append(password)
+                    lispesancostum["pesanan"].append([])
+                    lispesancostum["hargap"].append([])
+                    lispesancostum["status"].append([])
+                    counterakuncostumer += 1
+                    print(
+                        ""
+                        "\n ==Daftar berhasil== "
+                        f"\n no id : {counterakuncostumer}"
+                    )
+                elif logincostume == "0":
+                    loop2 = False
+                else:
+                    print(
+                        ""
+                        "\n input salah, coba lagi!"
+                    )
 
         elif login == "3":
             logintype = ""
@@ -292,7 +307,7 @@ while loopmain:
                 "\n 3. Lihat menu"
                 "\n 4. Tambah menu"
                 "\n 5. Ubah menu"
-                "\n 6. Kembali"
+                "\n 0. Kembali"
                 "\n (Masukan angka saja, misal \"1\")"
                 "\n > "
             ))
@@ -333,41 +348,42 @@ while loopmain:
                                 "\n Tidak ada pesanan dengan angka urut tersebut"
                             )
                             ubahm = str(ubahm)
-                    ubahs = True
-                    while ubahs:
+                    while True:
                         status = str(input(
                             ""
-                            "\n >  " + lispesan["namap"][editstatus-1] + " ( " + lispesan["nop"][editstatus-1] + " ) " + " id " + str(lispesan["idp"][editstatus-1]) +
+                            "\n >  " + lispesan["namap"][editstatus-1] + " ( " + str(lispesan["nop"][editstatus-1]) + " ) " + " id " + str(lispesan["idp"][editstatus-1]) +
                             "\n   " + lispesan["pesanan"][editstatus-1] + " dengan status " + lispesan["status"][editstatus-1] +
 
                             "\n Ubah status menjadi : "
-                            "\n 1. Dalam proses pembuatan"
+                            "\n 1. Dalam Proses Pembuatan"
                             "\n 2. Selsai"
-                            "\n (NOTE: Setelah di ubah \"Selsai\" tidak dapat di ubah kembali)"
+                            "\n (NOTE: Setelah di ubah \"Selsai\" / \"Dalam Proses Pembuatan\" tidak dapat di ubah kembali)"
                             "\n > "
                         ))
                         if status == "1":
+                            idda = lispesan["idp"][editstatus-1]
+                            stindex = lispesancostum["pesanan"][idda-1].index(lispesan["pesanan"][editstatus-1])
                             lispesan["status"][editstatus-1] = "Dalam Proses Pembuatan"
-                            idda = lispesan["idp"][editstatus-1]
-                            lispesancostum["status"][idda - 1][countercustompesanan[idda - 1] - 1] = "Dalam Proses Pemmbuatan"
-                            ubahs = False
+                            lispesancostum["status"][idda - 1][stindex] = "Dalam Proses Pemmbuatan"
                             print(
                                 ""
-                                "\n >  " + lispesan["namap"][editstatus-1] + " ( " + lispesan["nop"][editstatus-1] + " ) " + " id " + str(lispesan["idp"][editstatus-1]) +
+                                "\n >  " + lispesan["namap"][editstatus-1] + " ( " + str(lispesan["nop"][editstatus-1]) + " ) " + " id " + str(lispesan["idp"][editstatus-1]) +
                                 "\n    " + lispesan["pesanan"][editstatus-1] +
                                 "\n    Telah di ubah status menjadi : " + lispesan["status"][editstatus-1]
                             )
+                            break
                         elif status == "2":
-                            lispesan["status"][editstatus-1] = "Selsai"
                             idda = lispesan["idp"][editstatus-1]
-                            lispesancostum["status"][idda - 1][countercustompesanan[idda - 1] - 1] = "Selsai"
-                            ubahs = False
+                            stindex = lispesancostum["pesanan"][idda-1].index(lispesan["pesanan"][editstatus-1])
+                            lispesan["status"][editstatus-1] = "Selsai"
+                            lispesancostum["status"][idda - 1][stindex] = "Selsai"
                             print(
                                 ""
-                                "\n >  " + lispesan["namap"][editstatus-1] + " ( " + lispesan["nop"][editstatus-1] + " ) " + " id " + str(lispesan["idp"][editstatus-1]) +
+                                "\n >  " + lispesan["namap"][editstatus-1] + " ( " + str(lispesan["nop"][editstatus-1]) + " ) " + " id " + str(lispesan["idp"][editstatus-1]) +
                                 "\n    " + lispesan["pesanan"][editstatus-1] +
                                 "\n    Telah di ubah status menjadi : " + lispesan["status"][editstatus-1]
                             )
+                            break
                         else:
                             print(
                                 "input salah, coba lagi!"
@@ -387,13 +403,21 @@ while loopmain:
                     "\n Nama menu yang ingin di tambahkan : "
                     "\n > "
                 )
-                newmenuh = input(
-                    ""
-                    "\n >" + str(newmenu) +
-                    "\n Harga menu yang di tambahkan : "
-                    "\n (misal 50000)"
-                    "\n > Rp."
-                )
+                while not(type(newmenuh) == int):
+                    newmenuh = input(
+                        ""
+                        "\n >" + str(newmenu) +
+                        "\n Harga menu yang di tambahkan : "
+                        "\n (misal 50000)"
+                        "\n > Rp."
+                    )
+                    try:
+                        newmenuh = int(newmenuh)
+                    except ValueError:
+                        print(
+                            ""
+                            "\n input bukan angka, coba lagi"
+                        )
                 lismenu["tipe"].append(newmenu)
                 lismenu["harga"].append(newmenuh)
                 print(
@@ -429,19 +453,28 @@ while loopmain:
                     "\n Ubah menu menjadi : "
                     "\n > "
                 )
-                lismenu["harga"][ubahm-1] = input(
-                    ""
-                    "\n > " + str(lismenu["harga"][ubahm-1]) +
-                    "\n Ubah harga menjadi : "
-                    "\n > "
-                )
+                while True:
+                    lismenu["harga"][ubahm-1] = input(
+                        ""
+                        "\n > " + str(lismenu["harga"][ubahm-1]) +
+                        "\n Ubah harga menjadi : "
+                        "\n > "
+                    )
+                    try:
+                        lismenu["harga"][ubahm-1] = int(lismenu["harga"][ubahm-1])
+                        break
+                    except ValueError:
+                        print(
+                            ""
+                            "\n input bukan angka, coba lagi!"
+                        )
                 print(
                     ""
                     "\n Menu telah di ubah menjadi:"
                     "\n >" + lismenu["tipe"][ubahm-1] + " dengan harga " + lismenu["harga"][ubahm-1]
                 )
 
-            elif menuadmin == "6":
+            elif menuadmin == "0":
                 loop1 = False
 
             else:
@@ -464,15 +497,25 @@ while loopmain:
             menucostum = input(
                 ""
                 "\n Pilihan"
-                "\n 1. Buat Pesanan"
-                "\n 2. Edit pesanan"
-                "\n 3. Hapus pesanan"
-                "\n 4. Kembali"
+                "\n 1. Lihat Pesanan Yang Sudah Di Buat"
+                "\n 2. Buat Pesanan"
+                "\n 3. Edit pesanan"
+                "\n 4. Hapus pesanan"
+                "\n 0. Kembali"
                 "\n "
                 "\n > "
             )
 
             if menucostum == "1":
+                if len(lispesancostum["pesanan"][idd-1]) == 0:
+                    print(
+                        ""
+                        "\n ==Daftar pesanan kosong=="
+                    )
+                else:
+                    daftar_pesanan("costumer")
+
+            elif menucostum == "2":
                 daftar_menu()
                 try :
                     count = countercustompesanan[idd-1]
@@ -491,6 +534,12 @@ while loopmain:
                         print(
                             "Input salah, coba lagi!"
                         )
+                    if pesanan > len(lismenu["tipe"]) or pesanan <= 0:
+                        print(
+                            ""
+                            "\n Tidak ada menu dengan nomor urut " + str(pesanan) + " , coba lagi!"
+                        )
+                        pesanan = ""
                 jml = ""
                 while not(type(jml) == int):
                     jml = input(
@@ -509,8 +558,8 @@ while loopmain:
                 hargapb = 0
                 pesananb += (" " + lismenu["tipe"][pesanan-1] + " sebanyak " + str(jml) + "\n    |")
                 hargapb += lismenu["harga"][pesanan-1] * jml
-                tambahan = True
-                while tambahan:
+         
+                while True:
                     tambah = input(
                         "\n Pesanan saat ini:"
                         "\n > " + str(pesananb) +
@@ -551,12 +600,11 @@ while loopmain:
                         pesananb += (" " + lismenu["tipe"][pesanan-1] + " sebanyak " + str(jml) + "\n    |")
                         hargapb += lismenu["harga"][pesanan-1] * jml
                     elif tambah == "t":
-                        print(
-                            ""
-                            "\n Pesanan telah di buat :"
-                            "\n > " + str(pesananb) +
-                            "\n    Seharga total :" + rp(str(hargapb))
-                        )
+                        if pesananb in lispesancostum["pesanan"][idd-1]:
+                            pke = lispesancostum["pesanan"][idd-1].count(pesananb) + 1
+                            pluspes = "\n    |" + " ke " + str(pke) 
+                            pesananb = pesananb + pluspes
+
                         lispesan["pesanan"].append(pesananb)
                         lispesan["hargap"].append(hargapb)
                         lispesan["status"].append("Dalam Antrian")
@@ -574,139 +622,167 @@ while loopmain:
                         else:
                             countercustompesanan[idd-1] = count
 
-                        tambahan = False
+                        print(
+                            ""
+                            "\n Pesanan telah di buat :"
+                            "\n > " + str(pesananb) +
+                            "\n    Seharga total :" + rp(str(hargapb))
+                        )
+                        break
                     else:
                         print(
                             ""
                             "\n Input salah, coba lagi!"
                         )
 
-            if menucostum == "2":
-                if len(lispesan["pesanan"]) != 0:
-                    daftar_pesanan("costumer")
-
-                    editpesan = ""
-                    while not(type(editpesan) == int):
-                        editpesan = input(
+            elif menucostum == "3":
+                if len(lispesancostum["pesanan"][idd-1]) != 0:
+                    if not("Dalam Antrian" in lispesancostum["status"][idd-1]):
+                        print(
                             ""
-                            "\n Pilih pesanan di atas untuk di edit "
+                            "\n Tidak ada pesanan yang dapat di ubah"
+                        )
+                    else:
+                        daftar_pesanan("costumer")
+
+                        editpesan = ""
+                        while not(type(editpesan) == int):
+                            editpesan = input(
+                                ""
+                                "\n Pilih pesanan di atas untuk di edit : "
+                                "\n Note : hanya pesanan berstatus \"Dalam Antrian\" yang dapat di edit"
+                                "\n (masukan angka saja, misal \"1\")"
+                                "\n > "
+                            )
+                            try:
+                                editpesan = int(editpesan)
+                            except ValueError:
+                                print(
+                                    "Input salah, coba lagi!"
+                                )
+                            if editpesan > len(lispesan["pesanan"]) or editpesan <= 0:
+                                print(
+                                    ""
+                                    "\n tidak ada pesanan dengan nomor urut \"" + str(editpesan) + " \""
+                                )
+                                editpesan = ""
+                            elif lispesancostum["status"][idd-1][editpesan-1] != "Dalam Antrian":
+                                print(
+                                    ""
+                                    "\n Hanya bisa mengubah pesanan yang dalam antrian dan belum dalam proses pembuatan/selsai!"
+                                )
+                                editpesan = ""
+                    daftar_menu()
+                    pesanan = ""
+                    indexpara = lispesan["pesanan"][editpesan-1]
+                    while not(type(pesanan) == int):
+                        pesanan = input(
+                            ""
+                            "\n > " + lispesan["pesanan"][editpesan-1] +
+                            "\n Ubah menjadi pilihan  : "
                             "\n (masukan angka saja, misal \"1\")"
                             "\n > "
                         )
                         try:
-                            editpesan = int(editpesan)
+                            pesanan = int(pesanan)
                         except ValueError:
                             print(
                                 "Input salah, coba lagi!"
                             )
-
-                    loop2 = True
-                    while loop2:
-                        edit = input(
+                    jml = ""
+                    while not(type(jml) == int):
+                        jml = input(
                             ""
-                            "\n Pilih yang ingin di edit : "
-                            "\n 1. Identitas"
-                            "\n 2. Pesanan"
-                            "\n (masukan angka saja, misal \"1\")"
+                            "\n " + lismenu["tipe"][pesanan-1] +
+                            "\n Seberapa banyak :"
                             "\n > "
                         )
-                        if edit == "1":
-                            loop2 = False
-                            identitas = input(
-                                "\n Identitas saat ini:"
-                                "\n > " + lisidentitas["nama"][editpesan-1] + " (" + lisidentitas["no"][editpesan-1] + " )" +
-                                "\n Ubah identitas menjadi : "
-                                "\n"
-                                "\n Nama : "
-                                "\n > "
-                            )
-                            identitas1 = input(
-                                ""
-                                "\n No Hp : "
-                                "\n > "
-                            )
-                            lisidentitas["nama"][editpesan-1] = identitas
-                            lisidentitas["no"][editpesan-1] = identitas1
+                        try:
+                            jml = int(jml)
+                        except ValueError:
                             print(
-                                ""
-                                "\n Identitas telah di ubah menjadi : "
-                                "\n >", lisidentitas["nama"][editpesan-1], "(", lisidentitas["no"][editpesan-1], ")"
+                                "Input salah, coba lagi!"
                             )
-                            
-
-                        elif edit == "2":
-                            loop2 = False
+                    pesananb = ""
+                    hargapb = 0
+                    pesananb += (" " + lismenu["tipe"][pesanan-1] + " sebanyak " + str(jml) + "\n    |")
+                    hargapb += lismenu["harga"][pesanan-1] * jml
+            
+                    while True:
+                        tambah = input(
+                            "\n Pesanan saat ini:"
+                            "\n > " + str(pesananb) +
+                            "\n    Seharga total :" + rp(str(hargapb)) +
+                            "\n Tambah pesanan lagi? : "
+                            "\n (masukan \"y\" atau \"t\" saja)"
+                            "\n > "
+                        )
+                        if tambah == "y":
                             daftar_menu()
-                            pesanan = input(
-                                "\n Pesanan saat ini:"
-                                "\n >", lispesan["pesanan"][editpesan-1],
-                                "\n   Seharga:", lispesan["harga"][editpesan-1],
-                                "\n Ubah pesanan menjadi : "
-                                "\n (masukan angka saja, misal \"1\")"
-                                "\n > "
-                            )
-                            jml = input(
-                                ""
-                                "\n Seberapa banyak :"
-                                "\n >"
-                            )
-                            pesananb = ""
-                            hargapb = 0
-                            pesananb += " ", lismenu["tipe"][pesanan-1], "sebanyak", jml, "|"
-                            hargapb += lismenu["tipe"][pesanan-1] * jml
-                            lispesan["pesanan"][editpesan-1] = pesananb
-                            lispesan["harga"][editpesan-1] = hargapb
-                            tambahan = True
-                            while tambahan:
-                                tambah = input(
-                                    "\n Pesanan saat ini:"
-                                    "\n >", lispesan["pesanan"][editpesan-1],
-                                    "\n   Seharga:", lispesan["harga"][editpesan-1],
-                                    "\n tambah pesanan lagi? : "
-                                    "\n (masukan \"y\" atau \"t\" saja)"
-                                    "\n > "
-                                )
-                                if tambah == "y":
-                                    daftar_menu()
-                                    pesanan = input(
-                                    "\n Tmbah pesanan : "
+                            pesanan = ""
+                            while not(type(pesanan) == int):
+                                pesanan = input(
+                                    "\n Tambah pesanan : "
                                     "\n (masukan angka saja, misal \"1\")"
                                     "\n > "
-                                    )
-                                    jml = input(
-                                        ""
-                                        "\n Seberapa banyak :"
-                                        "\n >"
-                                    )
-                                    pesananb += " ", lismenu["tipe"][pesanan-1], "sebanyak", jml, "|"
-                                    hargapb += lismenu["tipe"][pesanan-1] * jml
-                                    lispesan["pesanan"][editpesan-1] = pesananb
-                                    lispesan["harga"][editpesan-1] = hargapb
-                                    lispesancostum["pesanan"][idd-1][editpesan-1] = pesananb
-                                    lispesancostum["hargap"][idd-1][editpesan-1] = hargapb
-                                elif tambah == "t":
+                                )
+                                try:
+                                    pesanan = int(pesanan)
+                                except ValueError:
                                     print(
-                                        ""
-                                        "\n Pesanan telah di ubah menjadi :"
-                                        "\n >", lispesan["pesanan"][editpesan-1]
+                                        "Input salah, coba lagi!"
                                     )
-                                    tambahan = False
-                                else:
+                            jml = ""
+                            while not(type(jml) == int):
+                                jml = input(
+                                    ""
+                                    "\n " + lismenu["tipe"][pesanan-1] +
+                                    "\n Seberapa banyak :"
+                                    "\n > "
+                                )
+                                try:
+                                    jml = int(jml)
+                                except ValueError:
                                     print(
-                                        ""
-                                        "\n Input salah, coba lagi!"
+                                        "Input salah, coba lagi!"
                                     )
+                            pesananb += (" " + lismenu["tipe"][pesanan-1] + " sebanyak " + str(jml) + "\n    |")
+                            hargapb += lismenu["harga"][pesanan-1] * jml
+                        elif tambah == "t":
+                            if pesananb in lispesancostum["pesanan"][idd-1]:
+                                pesananb =+ " ke " + str(lispesancostum["pesanan"][idd-1].count(pesananb) + 1)
 
+                            index = lispesan["pesanan"].index(indexpara)
+                            lispesan["pesanan"][index] = pesananb
+                            lispesan["hargap"][index] = hargapb
+                            
+                            lispesancostum["pesanan"][idd-1][editpesan-1] = pesananb
+                            lispesancostum["hargap"][idd-1][editpesan-1] = hargapb
+
+                            print(
+                                ""
+                                "\n Pesanan telah di ubah :"
+                                "\n > " + str(pesananb) +
+                                "\n    Seharga total :" + rp(str(hargapb))
+                            )
+                            break
                         else:
                             print(
                                 ""
                                 "\n Input salah, coba lagi!"
                             )
+
                 else:
                     print(
                         ""
                         "\n ==Daftar Pesanan Kosong=="
                     )
 
-            if menucostum == "4":
+            elif menucostum == "0":
                 loop1 = False
+
+            else:
+                print(
+                    ""
+                    "\n input salah, coba lagi!"
+                )
