@@ -307,6 +307,7 @@ while loopmain:
                 "\n 3. Lihat menu"
                 "\n 4. Tambah menu"
                 "\n 5. Ubah menu"
+                "\n 6. Hapus menu"
                 "\n 0. Kembali"
                 "\n (Masukan angka saja, misal \"1\")"
                 "\n > "
@@ -327,9 +328,9 @@ while loopmain:
                         ""
                         "\n Daftar Pesanan"
                     )
-                    daftar_pesanan("admin")
                     editstatus = ""
                     while not(type(editstatus) == int):
+                        daftar_pesanan("admin")
                         editstatus = input(
                             ""
                             "\n Pilih pesanan di atas untuk di ubah status "
@@ -395,7 +396,13 @@ while loopmain:
                     )
 
             elif menuadmin == "3":
-                daftar_menu()
+                if len(lismenu["tipe"]) != 0:
+                    daftar_menu()
+                else:
+                    print(
+                        ""
+                        "\n ==Daftar Menu Kosong=="
+                    )
 
             elif menuadmin == "4":
                 newmenu = input(
@@ -427,9 +434,9 @@ while loopmain:
                 )
 
             elif menuadmin == "5":
-                daftar_menu()
                 ubahm = ""
                 while not(type(ubahm) == int):
+                    daftar_menu()
                     ubahm = input(
                        ""
                         "\n Pilih menu untuk di ubah :"
@@ -447,7 +454,7 @@ while loopmain:
                             ""
                             "\n Tidak ada pesanan dengan angka urut tersebut"
                         )
-                        ubahm = str(ubahm)
+                        ubahm = ""
                 lismenu["tipe"][ubahm-1] = input(
                     ""
                     "\n >" + lismenu["tipe"][ubahm-1] +
@@ -472,8 +479,54 @@ while loopmain:
                 print(
                     ""
                     "\n Menu telah di ubah menjadi:"
-                    "\n >" + lismenu["tipe"][ubahm-1] + " dengan harga " + lismenu["harga"][ubahm-1]
+                    "\n >" + lismenu["tipe"][ubahm-1] + " dengan harga " + str(lismenu["harga"][ubahm-1])
                 )
+
+            elif menuadmin == "6":
+                hapm = ""
+                while not(type(hapm) == int):
+                    daftar_menu()
+                    hapm = input(
+                       ""
+                        "\n Pilih menu untuk di hapus :"
+                        "\n (angka saja misal \"1\")"
+                        "\n > "
+                    )
+                    try:
+                        hapm = int(hapm)
+                    except ValueError:
+                        print(
+                            "Input salah, coba lagi!"
+                        )
+                    if hapm > len(lismenu["tipe"]) or hapm <= 0:
+                        print(
+                            ""
+                            "\n Tidak ada pesanan dengan angka urut tersebut"
+                        )
+                        hapm = ""
+                confirmhapm = input(
+                    ""
+                    "\n " + lismenu["tipe"][hapm-1] +
+                    "\n " + rp(str(lismenu["harga"][hapm-1])) +
+                    "\n "
+                    "\n Hapus menu di atas ? (y/t) : "
+                    "\n (Note : Pesanan yang sebelumnya telah di buat pemesan dengan menu tersebut tidak akan hilang)"
+                    "\n > "
+                )
+                if confirmhapm == "y":
+                    del lismenu["tipe"][hapm-1]
+                    del lismenu["harga"][hapm-1]
+                    print(
+                        ""
+                        "\n Menu telah di hapus"
+                    )
+                elif confirmhapm == "t":
+                    "back"
+                else:
+                    print(
+                        ""
+                        "\n input salah, coba lagi!"
+                    )
 
             elif menuadmin == "0":
                 loop1 = False
@@ -517,13 +570,13 @@ while loopmain:
                     daftar_pesanan("costumer")
 
             elif menucostum == "2":
-                daftar_menu()
                 try :
                     count = countercustompesanan[idd-1]
                 except IndexError:
                     count = 0
                 pesanan = ""
                 while not(type(pesanan) == int):
+                    daftar_menu()
                     pesanan = input(
                         "\n Pilih pesanan : "
                         "\n (masukan angka saja, misal \"1\")"
@@ -644,10 +697,9 @@ while loopmain:
                             "\n Tidak ada pesanan yang dapat di ubah"
                         )
                     else:
-                        daftar_pesanan("costumer")
-
                         editpesan = ""
                         while not(type(editpesan) == int):
+                            daftar_pesanan("costumer")
                             editpesan = input(
                                 ""
                                 "\n Pilih pesanan di atas untuk di edit : "
@@ -690,6 +742,12 @@ while loopmain:
                             print(
                                 "Input salah, coba lagi!"
                             )
+                        if pesanan > len(lismenu["tipe"]) or pesanan <= 0:
+                            print(
+                                ""
+                                "\n tidak ada pesanan dengan nomor urut \"" + str(pesanan) + " \""
+                            )
+                            pesanan = ""
                     jml = ""
                     while not(type(jml) == int):
                         jml = input(
@@ -806,6 +864,7 @@ while loopmain:
                     ""
                     "\n " + lispesancostum["pesanan"][idd-1][hapes-1] +
                     "\n  " + str(lispesancostum["hargap"][idd-1][hapes-1]) +
+                    "\n"
                     "\n Hapus pesanan di atas ? (y/t) : "
                     "\n > "
                 )
