@@ -708,8 +708,15 @@ while loopmain:
                     elif tambah == "t":
                         if pesananb in lispesancostum["pesanan"][idd-1]:
                             pke = lispesancostum["pesanan"][idd-1].count(pesananb) + 1
-                            pluspes = "\n    |" + " ke " + str(pke) 
+                            pluspes = "\n    |" + " ke 2" 
                             pesananb = pesananb + pluspes
+                            if pesananb in lispesancostum["pesanan"][idd-1]:
+                                z = 2
+                                while pesananb in lispesancostum["pesanan"][idd-1]:
+                                    z += 1
+                                    pesananb = pesananb.rsplit(" ", 2)[0]
+                                    pluspes = " ke " + str(z) 
+                                    pesananb = pesananb + pluspes
 
                         lispesan["pesanan"].append(pesananb)
                         lispesan["hargap"].append(hargapb)
@@ -881,7 +888,16 @@ while loopmain:
 
                         elif tambah == "t":
                             if pesananb in lispesancostum["pesanan"][idd-1]:
-                                pesananb =+ " ke " + str(lispesancostum["pesanan"][idd-1].count(pesananb) + 1)
+                                pke = lispesancostum["pesanan"][idd-1].count(pesananb) + 1
+                                pluspes = "\n    |" + " ke 2" 
+                                pesananb = pesananb + pluspes
+                                if pesananb in lispesancostum["pesanan"][idd-1]:
+                                    z = 2
+                                    while pesananb in lispesancostum["pesanan"][idd-1]:
+                                        z += 1
+                                        pesananb = pesananb.rsplit(" ", 2)[0]
+                                        pluspes = " ke " + str(z) 
+                                        pesananb = pesananb + pluspes
 
                             index = lispesan["pesanan"].index(indexpara)
                             lispesan["pesanan"][index] = pesananb
