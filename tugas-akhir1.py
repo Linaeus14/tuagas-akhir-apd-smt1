@@ -369,7 +369,13 @@ while loopmain:
                                 ""
                                 "\n Tidak ada pesanan dengan angka urut tersebut"
                             )
-                            ubahm = ""
+                            editstatus = ""
+                        elif lispesan["status"][editstatus-1] == "Selsai":
+                            print(
+                                ""
+                                "\n tidak dapat mengubah status pesanan yang sudah selsai!"
+                            )
+                            editstatus = ""
 
                     while True:
                         status = str(input(
@@ -380,7 +386,7 @@ while loopmain:
                             "\n Ubah status menjadi : "
                             "\n 1. Dalam Proses Pembuatan"
                             "\n 2. Selsai"
-                            "\n (NOTE: Setelah di ubah \"Selsai\" / \"Dalam Proses Pembuatan\" tidak dapat di ubah kembali)"
+                            "\n (NOTE: Setelah di ubah \"Selsai\" / \"Dalam Proses Pembuatan\" tidak dapat di ubah kembali ke sebelumnya)"
                             "\n > "
                         ))
                         
@@ -649,6 +655,7 @@ while loopmain:
                             ""
                             "\n jumlah salah, mohon coba lagi!"
                         )
+                        jml = ""
 
                 pesananb = ""
                 hargapb = 0
@@ -701,6 +708,7 @@ while loopmain:
                                     ""
                                     "\n jumlah salah, mohon coba lagi!"
                                 )
+                                jml = ""
 
                         pesananb += (" " + lismenu["tipe"][pesanan-1] + " sebanyak " + str(jml) + "\n    |")
                         hargapb += lismenu["harga"][pesanan-1] * jml
@@ -830,6 +838,7 @@ while loopmain:
                                 ""
                                 "\n jumlah salah, mohon coba lagi!"
                             )
+                            jml = ""
 
                     pesananb = ""
                     hargapb = 0
@@ -882,6 +891,7 @@ while loopmain:
                                         ""
                                         "\n jumlah salah, mohon coba lagi!"
                                     )
+                                    jml = ""
 
                             pesananb += (" " + lismenu["tipe"][pesanan-1] + " sebanyak " + str(jml) + "\n    |")
                             hargapb += lismenu["harga"][pesanan-1] * jml
@@ -943,7 +953,7 @@ while loopmain:
                             ""
                             "\n input bukan angka, coba lagi!"
                         )
-                    if hapes > len(lispesancostum["pesanan"]) or hapes <= 0:
+                    if hapes > len(lispesancostum["pesanan"][idd-1]) or hapes <= 0:
                         print(
                             ""
                             "\n tidak ada angka urut " + str(hapes) + ", coba lagi!"
@@ -954,7 +964,7 @@ while loopmain:
                             ""
                             "\n Hanya bisa menghapus pesanan yang Dalam Antrian dan belum Dalam Proses Pembuatan / Selsai!"
                         )
-                        editpesan = ""
+                        hapes = ""
 
                 confirmhap = input(
                     ""
@@ -971,9 +981,16 @@ while loopmain:
 
                     del lispesan["pesanan"][index]
                     del lispesan["hargap"][index]
+                    del lispesan["status"][index]
+                    del lispesan["namap"][index]
+                    del lispesan["nop"][index]
+                    del lispesan["idp"][index]
 
                     del lispesancostum["pesanan"][idd-1][hapes-1]
                     del lispesancostum["hargap"][idd-1][hapes-1]
+                    del lispesancostum["status"][idd-1][hapes-1]
+
+                    countercustompesanan[idd-1] -= 1
 
                     print(
                         ""
