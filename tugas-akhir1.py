@@ -46,7 +46,10 @@ lispesancostum = {
 
 counterakuncostumer = 0
 countercustompesanan = []
-
+        
+def rp(x):
+    return "Rp."+str(x)+".00"
+    
 def filterlis(x):
     for length in x:
         for index in x:
@@ -108,9 +111,6 @@ def daftar_menu():
         print(
             f" {nu + 1}.", menu," : " , rp(lismenu["harga"][nu])
         )
-        
-def rp(x):
-    return "Rp."+str(x)+".00"
 
 #===================================================================================
 
@@ -296,7 +296,7 @@ while loopmain:
                         "\n input salah, coba lagi!"
                     )
 
-        elif login == "3":
+        elif login == "0":
             logintype = ""
             loopmain = False
             loop1 = False
