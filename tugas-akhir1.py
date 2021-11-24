@@ -390,10 +390,10 @@ while loopmain:
                             "\n > "
                         ))
                         
-                        if status == "1":
-                            idda = lispesan["idp"][editstatus-1]
-                            stindex = lispesancostum["pesanan"][idda-1].index(lispesan["pesanan"][editstatus-1])
+                        idda = lispesan["idp"][editstatus-1]
+                        stindex = lispesancostum["pesanan"][idda-1].index(lispesan["pesanan"][editstatus-1])
 
+                        if status == "1":
                             lispesan["status"][editstatus-1] = "Dalam Proses Pembuatan"
                             lispesancostum["status"][idda - 1][stindex] = "Dalam Proses Pemmbuatan"
                             print(
@@ -405,9 +405,6 @@ while loopmain:
                             break
 
                         elif status == "2":
-                            idda = lispesan["idp"][editstatus-1]
-                            stindex = lispesancostum["pesanan"][idda-1].index(lispesan["pesanan"][editstatus-1])
-
                             lispesan["status"][editstatus-1] = "Selsai"
                             lispesancostum["status"][idda - 1][stindex] = "Selsai"
                             print(
