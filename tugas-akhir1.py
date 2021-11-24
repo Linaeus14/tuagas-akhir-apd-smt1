@@ -125,7 +125,7 @@ while loopmain:
             "\n Masukan Tipe Pengguna"
             "\n 1. Admin"
             "\n 2. Costumer"
-            "\n 3. Berhenti"
+            "\n 0. Berhenti"
             "\n (angka saja, misal \"1\")"
             "\n "
             "\n > "
@@ -654,11 +654,8 @@ while loopmain:
                         )
                         jml = ""
 
-                pesananb = ""
-                hargapb = 0
-
-                pesananb += (" " + lismenu["tipe"][pesanan-1] + " sebanyak " + str(jml) + "\n    |")
-                hargapb += lismenu["harga"][pesanan-1] * jml
+                pesananb = " " + lismenu["tipe"][pesanan-1] + " sebanyak " + str(jml) + "\n    |"
+                hargapb = lismenu["harga"][pesanan-1] * jml
          
                 while True:
                     tambah = input(
