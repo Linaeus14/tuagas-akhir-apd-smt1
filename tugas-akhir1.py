@@ -698,6 +698,12 @@ while loopmain:
                                 )
                                 try:
                                     pesanan = int(pesanan)
+                                    if pesanan > len(lismenu["tipe"]) or pesanan <= 0:
+                                        print(
+                                            ""
+                                            "\n Tidak ada menu dengan nomor urut " + str(pesanan) + " , coba lagi!"
+                                        )
+                                        pesanan = ""
                                 except ValueError:
                                     print(
                                         "input bukan angka, coba lagi!"
@@ -885,6 +891,12 @@ while loopmain:
                                     )
                                     try:
                                         pesanan = int(pesanan)
+                                        if pesanan > len(lismenu["tipe"]) or pesanan <= 0:
+                                            print(
+                                                ""
+                                                "\n Tidak ada menu dengan nomor urut " + str(pesanan) + " , coba lagi!"
+                                            )
+                                            pesanan = ""
                                     except ValueError:
                                         print(
                                             "input bukan angka, coba lagi!"
